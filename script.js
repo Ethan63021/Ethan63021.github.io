@@ -6,11 +6,19 @@ let currentGuess = "";
 // Elements
 const grid = document.getElementById("grid");
 const resultMessage = document.getElementById("resultMessage");
+const keystrokeContainer = document.getElementById("keystrokeContainer");
 
 // Initialize the grid with empty divs
 for (let i = 0; i < maxAttempts * 5; i++) {
     const cell = document.createElement("div");
     grid.appendChild(cell);
+}
+
+// Initialize keystroke container for visual feedback
+for (let i = 0; i < 5; i++) {
+    const keystroke = document.createElement("div");
+    keystroke.classList.add("keystroke");
+    keystrokeContainer.appendChild(keystroke);
 }
 
 // Wordnik API URL and Key (replace with your own API key)
@@ -42,7 +50,7 @@ document.addEventListener("keydown", async (e) => {
     if (key >= 'A' && key <= 'Z') {
         if (currentGuess.length < 5) {
             currentGuess += key;
-            updateGrid();
+            updateKeystrokes();
         }
 
         // If the guess has 5 letters, validate and submit it
@@ -53,7 +61,7 @@ document.addEventListener("keydown", async (e) => {
             if (!isValid) {
                 alert("This is not a valid English word. Please try again.");
                 currentGuess = ""; // Reset the guess if invalid
-                updateGrid();
+                updateKeystrokes();
                 return;
             }
 
@@ -75,21 +83,18 @@ document.addEventListener("keydown", async (e) => {
             }
 
             currentGuess = ""; // Reset guess after submission
-            updateGrid(); // Update the grid after the guess
+            updateKeystrokes(); // Update keystroke display
         }
     }
 });
 
-// Function to update the grid with the current guess
-function updateGrid() {
-    const startIdx = (attempts) * 5;
+// Function to update the keystrokes visual display
+function updateKeystrokes() {
+    const keystrokes = keystrokeContainer.children;
 
     for (let i = 0; i < 5; i++) {
-        const cell = grid.children[startIdx + i];
-        const letter = currentGuess[i] || ""; // If no letter, use an empty string
-
-        cell.textContent = letter;
-        cell.style.backgroundColor = "#333"; // Default background color
+        const keystroke = keystrokes[i];
+        keystroke.textContent = currentGuess[i] || ""; // If no letter, make it empty
     }
 }
 
