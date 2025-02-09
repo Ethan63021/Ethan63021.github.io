@@ -1,6 +1,13 @@
+{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;  /* Dark background */
+    color: #e0e0e0;  /* Light text color */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -8,54 +15,99 @@ body {
     margin: 0;
 }
 
+/* Container for the game */
 .game-container {
+    background-color: #1e1e1e; /* Dark card background */
+    padding: 30px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     text-align: center;
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
+    min-height: 350px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(5, 50px);
-    grid-gap: 10px;
-    margin: 20px 0;
-    justify-content: center;
-}
-
-.grid div {
-    width: 50px;
-    height: 50px;
-    border: 1px solid #ccc;
-    font-size: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Heading */
+h1 {
+    font-size: 2rem;
+    color: #76c7c0;  /* Modern teal color */
+    margin-bottom: 20px;
     font-weight: bold;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #218838;
-}
-
-input {
-    padding: 10px;
-    font-size: 16px;
-    margin-right: 10px;
-    width: 100px;
+/* Instructions and messages */
+p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
 }
 
 #resultMessage {
     margin-top: 20px;
     font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+}
+
+/* Grid container */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+/* Each grid cell (for guesses) */
+.grid div {
+    background-color: #333;  /* Dark background for letters */
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #e0e0e0;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+/* Input and button styling */
+input {
+    width: 120px;
+    padding: 12px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background-color: #121212;
+    color: #e0e0e0;
+    font-size: 1.1rem;
+    margin-right: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    border-color: #76c7c0;  /* Focus color */
+}
+
+button {
+    padding: 12px 20px;
+    background-color: #76c7c0;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #66b8b0;  /* Slightly darker on hover */
+}
+
+/* Responsive design: Adjust grid and container width on smaller screens */
+@media (max-width: 500px) {
+    .game-container {
+        width: 90%;
+    }
+    .grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
