@@ -30,6 +30,7 @@ body {
     align-items: center;
 }
 
+
 /* Title */
 h1 {
     font-size: 2.4rem;
@@ -48,7 +49,7 @@ p {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 10px;
-    margin: 20px auto;
+    margin-bottom: 20px; /* Ensures space below the grid */
     width: 100%;
     max-width: 300px;
 }
@@ -86,13 +87,14 @@ p {
     border-radius: 10px;
 }
 
-/* Bottom container - Now positioned properly below the grid */
 .bottom-container {
-    margin-top: 30px;  /* Added space so it doesn’t overlap the grid */
+    margin-top: 20px; /* Extra space so it never overlaps */
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
+
 
 /* Submit Button */
 .submit-button {
