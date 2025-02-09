@@ -39,12 +39,21 @@ document.addEventListener("keydown", (e) => {
     }
 });
 
-// Submit button event listener
-submitButton.addEventListener("click", () => {
+function submitGuess() {
     if (currentGuess.length === 5) {
         processGuess();
     } else {
         alert("Please enter a full 5-letter word.");
+    }
+}
+
+// Submit button event listener
+submitButton.addEventListener("click", submitGuess);
+
+// Listen for Enter key to submit guess
+document.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+        submitGuess();
     }
 });
 
