@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #121212;  /* Dark background for the page */
-    color: #e0e0e0;  /* Light text color */
+    background-color: #f4f4f4;  /* Light gray background */
+    color: #333;  /* Dark text color for readability */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,55 +19,55 @@ body {
 
 /* Container for the game */
 .game-container {
-    background-color: #1e1e1e;  /* Dark card background */
-    padding: 30px 50px;
+    background-color: #ffffff;  /* White background for the container */
+    padding: 40px 60px;
     border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
-    width: 400px;
-    min-height: 450px;
-    transition: transform 0.2s ease;
+    width: 450px;
+    min-height: 480px;
+    transition: transform 0.3s ease;
 }
 
 /* Hover animation for the container */
 .game-container:hover {
-    transform: scale(1.03);
+    transform: scale(1.02);
 }
 
 /* Heading */
 h1 {
-    font-size: 2.2rem;
-    color: #76c7c0;  /* Teal accent color */
-    margin-bottom: 15px;
-    font-weight: bold;
+    font-size: 2.4rem;
+    color: #2c3e50;  /* Darker shade for the title */
+    margin-bottom: 20px;
+    font-weight: 600;
     letter-spacing: 2px;
 }
 
 /* Instructions text */
 p {
     font-size: 1.1rem;
-    margin-bottom: 15px;
-    color: #d1d1d1;  /* Slightly lighter text */
+    margin-bottom: 30px;
+    color: #7f8c8d;  /* Lighter text color */
 }
 
 /* Grid container */
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 10px;
+    gap: 12px;
     margin-bottom: 30px;
 }
 
 /* Each grid cell (for guesses) */
 .grid div {
-    background-color: #333;  /* Dark background for each letter box */
+    background-color: #ecf0f1;  /* Light gray background for each letter box */
     height: 70px;
     display: flex;
     justify-content: center;
     align-items: center;
-    color: #e0e0e0;
+    color: #333;
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 600;
     border-radius: 12px;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
@@ -80,11 +80,11 @@ p {
 }
 
 .keystroke {
-    background-color: #333;
-    color: #e0e0e0;
+    background-color: #ecf0f1;  /* Light gray for empty keystrokes */
+    color: #333;
     width: 50px;
     height: 50px;
-    margin: 0 5px;
+    margin: 0 8px;
     font-size: 2rem;
     display: flex;
     justify-content: center;
@@ -95,28 +95,29 @@ p {
 
 /* Submit Button */
 .submit-button {
-    background-color: #76c7c0; /* Teal background for button */
+    background-color: #1abc9c;  /* Soft teal for the button */
     color: #fff;
     border: none;
-    padding: 12px 30px;
+    padding: 12px 32px;
     font-size: 1.2rem;
     border-radius: 12px;
     cursor: pointer;
     margin-top: 20px;
     transition: background-color 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .submit-button:hover {
-    background-color: #4d9e9a; /* Slightly darker teal */
+    background-color: #16a085;  /* Darker teal for hover effect */
 }
 
 /* Success/Failure colors */
 .success {
-    color: #2ecc71; /* Green for success */
+    color: #27ae60; /* Soft green for success */
 }
 
 .failure {
-    color: #e74c3c; /* Red for failure */
+    color: #e74c3c; /* Soft red for failure */
 }
 
 /* Responsive design: Adjust grid and container width on smaller screens */
