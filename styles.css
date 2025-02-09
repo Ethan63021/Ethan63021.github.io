@@ -7,85 +7,73 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;  /* Light gray background */
-    color: #333;  /* Dark text color for readability */
+    background-color: #f4f4f4; /* Light gray background */
+    color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
-    padding: 20px;
+    flex-direction: column;
 }
 
 /* Container for the game */
 .game-container {
-    background-color: #ffffff;  /* White background for the container */
-    padding: 40px 60px;
+    background-color: #ffffff;
+    padding: 40px;
     border-radius: 20px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: center;
     width: 450px;
-    min-height: 480px;
     position: relative;
-    overflow: hidden;
-    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 500px;
 }
 
-/* Hover animation for the container */
-.game-container:hover {
-    transform: scale(1.02);
-}
-
-/* Heading */
+/* Title */
 h1 {
     font-size: 2.4rem;
-    color: #2c3e50;  /* Darker shade for the title */
-    margin-bottom: 20px;
-    font-weight: 600;
-    letter-spacing: 2px;
+    color: #2c3e50;
+    margin-bottom: 10px;
 }
 
-/* Instructions text */
+/* Instructions */
 p {
     font-size: 1.1rem;
-    margin-bottom: 30px;
-    color: #7f8c8d;  /* Lighter text color */
+    color: #7f8c8d;
 }
 
-/* Grid container (moved to the bottom) */
+/* Grid for guesses */
 .grid {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    gap: 12px;
-    margin-top: 20px;  /* Added space between submit button and grid */
-    position: absolute;
-    bottom: 80px;  /* Position grid at the bottom near submit button */
+    gap: 10px;
+    margin: 20px auto;
     width: 100%;
 }
 
-/* Each grid cell (for guesses) */
 .grid div {
-    background-color: #ecf0f1;  /* Light gray background for each letter box */
-    height: 70px;
+    background-color: #ecf0f1;
+    height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #333;
     font-size: 2rem;
     font-weight: 600;
-    border-radius: 12px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    border-radius: 10px;
 }
 
-/* Keystroke Visual Feedback */
+/* Keystroke container (moved to bottom) */
 .keystroke-container {
     display: flex;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .keystroke {
-    background-color: #ecf0f1;  /* Light gray for empty keystrokes */
+    background-color: #ecf0f1;
     color: #333;
     width: 50px;
     height: 50px;
@@ -95,84 +83,53 @@ p {
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    transition: background-color 0.3s ease;
+}
+
+/* Bottom container (holds input line & submit button) */
+.bottom-container {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 /* Submit Button */
 .submit-button {
-    background-color: #1abc9c;  /* Soft teal for the button */
+    background-color: #1abc9c;
     color: #fff;
     border: none;
     padding: 12px 32px;
     font-size: 1.2rem;
     border-radius: 12px;
     cursor: pointer;
-    margin-top: 20px;
+    margin-top: 10px;
     transition: background-color 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .submit-button:hover {
-    background-color: #16a085;  /* Darker teal for hover effect */
+    background-color: #16a085;
 }
 
-/* Credits Button (positioned bottom-right) */
+/* Credits Button (fixed at bottom right) */
 .credits-button {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background-color: #e67e22;  /* Warm orange for the credits button */
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #e67e22;
     color: white;
     border: none;
     padding: 12px 24px;
     font-size: 1rem;
     border-radius: 12px;
     cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-decoration: none;
 }
 
 .credits-button:hover {
-    background-color: #d35400;  /* Darker orange for hover effect */
-}
-
-/* Success/Failure colors */
-.success {
-    color: #27ae60; /* Soft green for success */
-}
-
-.failure {
-    color: #e74c3c; /* Soft red for failure */
-}
-
-/* Credits Modal */
-.credits-modal {
-    display: none;  /* Hidden by default */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent background */
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.credits-modal-content {
-    background-color: #ffffff;
-    padding: 30px;
-    border-radius: 15px;
-    width: 300px;
-    text-align: center;
-}
-
-#closeModal {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: #e74c3c;
+    background-color: #d35400;
 }
 
 /* Responsive design */
