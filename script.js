@@ -23,19 +23,18 @@ for (let i = 0; i < 5; i++) {
 
 // Listen for keystrokes on the document
 document.addEventListener("keydown", (e) => {
-    const key = e.key.toUpperCase();
-
-    // Handle letter input
-    if (key >= 'A' && key <= 'Z') {
-        if (currentGuess.length < 5) {
-            currentGuess += key;
+    if (e.key === "Backspace") {
+        // Remove the last letter if there is one
+        if (currentGuess.length > 0) {
+            currentGuess = currentGuess.slice(0, -1);
             updateKeystrokes();
         }
-    } 
-    // Handle Backspace to remove last letter
-    else if (e.key === "Backspace") {
-        currentGuess = currentGuess.slice(0, -1);
-        updateKeystrokes();
+    } else if (/^[a-zA-Z]$/.test(e.key)) {
+        // Ensure only letters are entered
+        if (currentGuess.length < 5) {
+            currentGuess += e.key.toUpperCase();
+            updateKeystrokes();
+        }
     }
 });
 
