@@ -7,6 +7,7 @@ let currentGuess = "";
 const grid = document.getElementById("grid");
 const resultMessage = document.getElementById("resultMessage");
 const keystrokeContainer = document.getElementById("keystrokeContainer");
+const submitButton = document.getElementById("submitButton");
 
 // Initialize the grid with empty divs
 for (let i = 0; i < maxAttempts * 5; i++) {
@@ -31,31 +32,39 @@ document.addEventListener("keydown", async (e) => {
             currentGuess += key;
             updateKeystrokes();
         }
-
-        // If the guess has 5 letters, validate and submit it
-        if (currentGuess.length === 5) {
-            // Proceed with the guess
-            attempts++;
-            displayGuess(currentGuess);
-
-            if (currentGuess === correctWord) {
-                resultMessage.textContent = "Congratulations! You guessed the word!";
-                resultMessage.classList.add("success");
-                resultMessage.classList.remove("failure");
-            } else if (attempts === maxAttempts) {
-                resultMessage.textContent = `Game Over! The correct word was "${correctWord}".`;
-                resultMessage.classList.add("failure");
-                resultMessage.classList.remove("success");
-            } else {
-                resultMessage.textContent = `Attempt ${attempts} of ${maxAttempts}. Keep going!`;
-                resultMessage.classList.remove("success", "failure");
-            }
-
-            currentGuess = ""; // Reset guess after submission
-            updateKeystrokes(); // Update keystroke display
-        }
     }
 });
+
+// Submit button event listener
+submitButton.addEventListener("click", () => {
+    if (currentGuess.length === 5) {
+        processGuess();
+    } else {
+        alert("Please enter a full 5-letter word.");
+    }
+});
+
+// Function to process the guess
+function processGuess() {
+    attempts++;
+    displayGuess(currentGuess);
+
+    if (currentGuess === correctWord) {
+        resultMessage.textContent = "Congratulations! You guessed the word!";
+        resultMessage.classList.add("success");
+        resultMessage.classList.remove("failure");
+    } else if (attempts === maxAttempts) {
+        resultMessage.textContent = `Game Over! The correct word was "${correctWord}".`;
+        resultMessage.classList.add("failure");
+        resultMessage.classList.remove("success");
+    } else {
+        resultMessage.textContent = `Attempt ${attempts} of ${maxAttempts}. Keep going!`;
+        resultMessage.classList.remove("success", "failure");
+    }
+
+    currentGuess = ""; // Reset guess after submission
+    updateKeystrokes(); // Update keystroke display
+}
 
 // Function to update the keystrokes visual display
 function updateKeystrokes() {
