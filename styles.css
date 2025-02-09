@@ -1,4 +1,5 @@
-{
+/* General reset */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -92,18 +93,21 @@ p {
     transition: background-color 0.3s ease;
 }
 
-/* Input and button styling (if you were to use a button, but we won’t need it anymore) */
-input {
-    width: 140px;
-    padding: 12px;
-    border: 2px solid #333;
-    border-radius: 12px;
-    background-color: #121212;
-    color: #e0e0e0;
+/* Submit Button */
+.submit-button {
+    background-color: #76c7c0; /* Teal background for button */
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
     font-size: 1.2rem;
-    margin-right: 20px;
-    outline: none;
-    transition: border-color 0.3s ease;
+    border-radius: 12px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+    background-color: #4d9e9a; /* Slightly darker teal */
 }
 
 /* Success/Failure colors */
