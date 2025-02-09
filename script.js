@@ -8,6 +8,9 @@ const grid = document.getElementById("grid");
 const resultMessage = document.getElementById("resultMessage");
 const keystrokeContainer = document.getElementById("keystrokeContainer");
 const submitButton = document.getElementById("submitButton");
+const creditsButton = document.getElementById("creditsButton");
+const creditsModal = document.getElementById("creditsModal");
+const closeModal = document.getElementById("closeModal");
 
 // Initialize the grid with empty divs
 for (let i = 0; i < maxAttempts * 5; i++) {
@@ -42,6 +45,16 @@ submitButton.addEventListener("click", () => {
     } else {
         alert("Please enter a full 5-letter word.");
     }
+});
+
+// Credits button event listener
+creditsButton.addEventListener("click", () => {
+    creditsModal.style.display = "flex";  // Show modal
+});
+
+// Close modal event listener
+closeModal.addEventListener("click", () => {
+    creditsModal.style.display = "none";  // Hide modal
 });
 
 // Function to process the guess
@@ -92,10 +105,10 @@ function displayGuess(guess) {
 // Get the background color for each letter in the guess
 function getColorForLetter(letter, index) {
     if (letter === correctWord[index]) {
-        return "#2ecc71"; // Correct letter and position (green)
+        return "#27ae60"; // Correct letter and position (green)
     } else if (correctWord.includes(letter)) {
         return "#f39c12"; // Correct letter but wrong position (yellow)
     } else {
-        return "#7f8c8d"; // Incorrect letter (gray)
+        return "#bdc3c7"; // Incorrect letter (gray)
     }
 }
