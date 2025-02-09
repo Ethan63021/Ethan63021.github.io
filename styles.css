@@ -1,50 +1,53 @@
-{
+/* General reset */
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212;  /* Dark background */
+    font-family: 'Roboto', sans-serif;
+    background-color: #121212;  /* Dark background for the page */
     color: #e0e0e0;  /* Light text color */
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
     margin: 0;
+    padding: 20px;
 }
 
 /* Container for the game */
 .game-container {
-    background-color: #1e1e1e; /* Dark card background */
-    padding: 30px 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    background-color: #1e1e1e;  /* Dark card background */
+    padding: 30px 50px;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
     text-align: center;
     width: 400px;
-    min-height: 350px;
+    min-height: 450px;
+    transition: transform 0.2s ease;
+}
+
+/* Hover animation for the container */
+.game-container:hover {
+    transform: scale(1.03);
 }
 
 /* Heading */
 h1 {
-    font-size: 2rem;
-    color: #76c7c0;  /* Modern teal color */
-    margin-bottom: 20px;
+    font-size: 2.2rem;
+    color: #76c7c0;  /* Teal accent color */
+    margin-bottom: 15px;
     font-weight: bold;
+    letter-spacing: 2px;
 }
 
-/* Instructions and messages */
+/* Instructions text */
 p {
     font-size: 1.1rem;
-    margin-bottom: 20px;
-}
-
-#resultMessage {
-    margin-top: 20px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    text-transform: capitalize;
+    margin-bottom: 15px;
+    color: #d1d1d1;  /* Slightly lighter text */
 }
 
 /* Grid container */
@@ -52,54 +55,76 @@ p {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     gap: 8px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 /* Each grid cell (for guesses) */
 .grid div {
-    background-color: #333;  /* Dark background for letters */
+    background-color: #333;  /* Dark background for each letter box */
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: #e0e0e0;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     font-weight: bold;
-    border-radius: 8px;
-    transition: background-color 0.3s ease;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 /* Input and button styling */
 input {
-    width: 120px;
+    width: 140px;
     padding: 12px;
     border: 2px solid #333;
-    border-radius: 8px;
+    border-radius: 12px;
     background-color: #121212;
     color: #e0e0e0;
-    font-size: 1.1rem;
-    margin-right: 15px;
+    font-size: 1.2rem;
+    margin-right: 20px;
     outline: none;
     transition: border-color 0.3s ease;
 }
 
+/* Focus effect for input */
 input:focus {
-    border-color: #76c7c0;  /* Focus color */
+    border-color: #76c7c0;
 }
 
+/* Submit button */
 button {
     padding: 12px 20px;
     background-color: #76c7c0;
     color: white;
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
+/* Hover effect for button */
 button:hover {
-    background-color: #66b8b0;  /* Slightly darker on hover */
+    background-color: #66b8b0;
+    transform: translateY(-2px);
+}
+
+/* Result message */
+#resultMessage {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-transform: capitalize;
+    color: #d1d1d1;
+}
+
+/* Success/Failure colors */
+.success {
+    color: #2ecc71; /* Green for success */
+}
+
+.failure {
+    color: #e74c3c; /* Red for failure */
 }
 
 /* Responsive design: Adjust grid and container width on smaller screens */
@@ -107,6 +132,7 @@ button:hover {
     .game-container {
         width: 90%;
     }
+
     .grid {
         grid-template-columns: repeat(5, 1fr);
     }
