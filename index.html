@@ -3,163 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Message Board</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #121212;
-            color: #E0E0E0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        .container {
-            background-color: #1f1f1f;
-            border-radius: 10px;
-            width: 100%;
-            max-width: 600px;
-            padding: 20px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-        }
-
-        h1 {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .message-board {
-            margin-top: 20px;
-            padding: 10px;
-            border-top: 1px solid #333;
-        }
-
-        .message {
-            background-color: #333;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 10px;
-            color: #E0E0E0;
-            font-size: 1rem;
-        }
-
-        .message input,
-        .message textarea {
-            width: 100%;
-            padding: 10px;
-            background-color: #222;
-            border: 1px solid #444;
-            border-radius: 5px;
-            color: #E0E0E0;
-            font-size: 1rem;
-            margin-top: 10px;
-            resize: vertical;
-        }
-
-        .message input[type="text"] {
-            margin-bottom: 10px;
-        }
-
-        .message button {
-            padding: 10px;
-            background-color: #6200ea;
-            border: none;
-            border-radius: 5px;
-            color: white;
-            font-size: 1rem;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .message button:hover {
-            background-color: #3700b3;
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            color: #888;
-        }
-    </style>
+    <title>Ethanle</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Message Board</h1>
-
-        <div class="message-board">
-            <div class="message">
-                <h3>Leave a Message:</h3>
-                <form id="messageForm">
-                    <input type="text" id="name" placeholder="Your name" required>
-                    <textarea id="message" placeholder="Write your message here..." rows="4" required></textarea>
-                    <button type="submit">Post Message</button>
-                </form>
-            </div>
-
-            <div id="messagesList">
-                <!-- Messages will be displayed here -->
-            </div>
+    <div class="game-container">
+        <h1>Ethanle</h1>
+        <p>Guess the 5-letter word!</p>
+        <div class="grid" id="grid"></div>
+        <div>
+            <input type="text" id="guessInput" maxlength="5" placeholder="Enter guess">
+            <button id="submitGuess">Submit</button>
         </div>
-
-        <div class="footer">
-            <p>&copy; 2025 Message Board</p>
-        </div>
+        <p id="resultMessage"></p>
     </div>
 
-    <script>
-        const messageForm = document.getElementById('messageForm');
-        const messagesList = document.getElementById('messagesList');
-
-        // Load messages from localStorage when the page loads
-        window.onload = () => {
-            const messages = JSON.parse(localStorage.getItem('messages')) || [];
-            messages.forEach(message => {
-                displayMessage(message.name, message.text);
-            });
-        };
-
-        // Display message on the page
-        function displayMessage(name, text) {
-            const messageElement = document.createElement('div');
-            messageElement.classList.add('message');
-            messageElement.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
-
-            messagesList.appendChild(messageElement);
-        }
-
-        // Handle message form submission
-        messageForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            const name = document.getElementById('name').value;
-            const messageText = document.getElementById('message').value;
-
-            if (name && messageText) {
-                // Save message to localStorage
-                const newMessage = { name, text: messageText };
-                const messages = JSON.parse(localStorage.getItem('messages')) || [];
-                messages.push(newMessage);
-                localStorage.setItem('messages', JSON.stringify(messages));
-
-                // Display new message
-                displayMessage(name, messageText);
-
-                // Clear the form
-                messageForm.reset();
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
