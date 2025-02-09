@@ -25,12 +25,15 @@ for (let i = 0; i < 5; i++) {
 document.addEventListener("keydown", (e) => {
     const key = e.key.toUpperCase();
 
+    // Handle letter input
     if (key >= 'A' && key <= 'Z') {
         if (currentGuess.length < 5) {
             currentGuess += key;
             updateKeystrokes();
         }
-    } else if (e.key === "Backspace") {
+    } 
+    // Handle Backspace to remove last letter
+    else if (e.key === "Backspace") {
         currentGuess = currentGuess.slice(0, -1);
         updateKeystrokes();
     }
