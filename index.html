@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -121,6 +122,24 @@
         const messageForm = document.getElementById('messageForm');
         const messagesList = document.getElementById('messagesList');
 
+        // Load messages from localStorage when the page loads
+        window.onload = () => {
+            const messages = JSON.parse(localStorage.getItem('messages')) || [];
+            messages.forEach(message => {
+                displayMessage(message.name, message.text);
+            });
+        };
+
+        // Display message on the page
+        function displayMessage(name, text) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('message');
+            messageElement.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+
+            messagesList.appendChild(messageElement);
+        }
+
+        // Handle message form submission
         messageForm.addEventListener('submit', function(e) {
             e.preventDefault();
 
@@ -128,13 +147,17 @@
             const messageText = document.getElementById('message').value;
 
             if (name && messageText) {
-                const messageElement = document.createElement('div');
-                messageElement.classList.add('message');
-                messageElement.innerHTML = `<strong>${name}</strong><p>${messageText}</p>`;
+                // Save message to localStorage
+                const newMessage = { name, text: messageText };
+                const messages = JSON.parse(localStorage.getItem('messages')) || [];
+                messages.push(newMessage);
+                localStorage.setItem('messages', JSON.stringify(messages));
 
-                messagesList.prepend(messageElement);  // Adds new message at the top
+                // Display new message
+                displayMessage(name, messageText);
 
-                messageForm.reset();  // Clear the form inputs after submission
+                // Clear the form
+                messageForm.reset();
             }
         });
     </script>
