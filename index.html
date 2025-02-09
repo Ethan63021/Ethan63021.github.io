@@ -3,26 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ethanle </title>
+    <title>Ethanle Game</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="game-container">
         <h1>Ethanle</h1>
-        <p>Guess the 5-letter word!</p>
+        <p>Guess the 5-letter word (ETHAN) within 6 tries!</p>
 
         <!-- Keystroke display -->
         <div id="keystrokeContainer" class="keystroke-container"></div>
 
-        <!-- Grid for guesses -->
-        <div id="grid" class="grid"></div>
-
         <!-- Result message -->
         <div id="resultMessage"></div>
 
-        <!-- Submit Button (Added Back) -->
+        <!-- Submit Button -->
         <button id="submitButton" class="submit-button">Submit Guess</button>
+
+        <!-- Grid for guesses, now positioned at the bottom -->
+        <div id="grid" class="grid"></div>
+
+        <!-- Credits Button (positioned at the bottom right) -->
+        <button id="creditsButton" class="credits-button">Credits</button>
+    </div>
+
+    <!-- Credits Modal -->
+    <div id="creditsModal" class="credits-modal">
+        <div class="credits-modal-content">
+            <span id="closeModal" class="close">&times;</span>
+            <h2>Credits</h2>
+            <p>Created by: Your Name</p>
+            <p>Thanks for playing!</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
