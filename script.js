@@ -21,27 +21,6 @@ for (let i = 0; i < 5; i++) {
     keystrokeContainer.appendChild(keystroke);
 }
 
-// Wordnik API URL and Key (replace with your own API key)
-const apiKey = "YOUR_WORDNIK_API_KEY";
-const wordnikUrl = "https://api.wordnik.com/v4/word.json";
-
-// Function to check if the word is valid
-async function isValidWord(word) {
-    try {
-        const response = await fetch(`${wordnikUrl}/${word.toLowerCase()}/definitions?api_key=${apiKey}`);
-        const data = await response.json();
-        
-        if (data.length === 0) {
-            return false; // No definition found
-        }
-        
-        return true; // Valid word
-    } catch (error) {
-        console.error("Error checking word:", error);
-        return false; // Error occurred, assume invalid
-    }
-}
-
 // Listen for keystrokes on the document
 document.addEventListener("keydown", async (e) => {
     const key = e.key.toUpperCase();
@@ -55,16 +34,6 @@ document.addEventListener("keydown", async (e) => {
 
         // If the guess has 5 letters, validate and submit it
         if (currentGuess.length === 5) {
-            // Check if the word is valid using the Wordnik API
-            const isValid = await isValidWord(currentGuess);
-            
-            if (!isValid) {
-                alert("This is not a valid English word. Please try again.");
-                currentGuess = ""; // Reset the guess if invalid
-                updateKeystrokes();
-                return;
-            }
-
             // Proceed with the guess
             attempts++;
             displayGuess(currentGuess);
