@@ -85,15 +85,19 @@ function displayGuess(guess) {
     const correctWordArray = correctWord.split(""); // Convert "ETHAN" into an array
     const guessArray = guess.split(""); // Convert guess into an array
 
-    // Create a copy of correctWordArray to track used letters
+    // Copy of correctWordArray to track which letters have been used
     let remainingLetters = [...correctWordArray];
 
     // First pass: Check for correct letters in the correct position (GREEN)
     for (let i = 0; i < 5; i++) {
         const cell = grid.children[startIdx + i];
+        cell.textContent = guessArray[i];
+
         if (guessArray[i] === correctWordArray[i]) {
-            cell.style.backgroundColor = "#2ecc71"; // Green
-            remainingLetters[i] = null; // Mark this letter as used
+            cell.style.backgroundColor = "#2ecc71"; // Green (correct position)
+            cell.style.color = "white";
+            remainingLetters[i] = null; // Mark as used
+            guessArray[i] = null; // Mark guessed letter as used
         }
     }
 
@@ -101,15 +105,19 @@ function displayGuess(guess) {
     for (let i = 0; i < 5; i++) {
         const cell = grid.children[startIdx + i];
 
-        // If it's already green, skip it
-        if (cell.style.backgroundColor === "rgb(46, 204, 113)") continue;
+        if (guessArray[i] && remainingLetters.includes(guessArray[i])) {
+            cell.style.backgroundColor = "#f1c40f"; // Yellow (wrong position)
+            cell.style.color = "white";
 
-        const letterIndex = remainingLetters.indexOf(guessArray[i]);
-        if (letterIndex !== -1) {
-            cell.style.backgroundColor = "#f1c40f"; // Yellow
-            remainingLetters[letterIndex] = null; // Mark this letter as used
-        } else {
-            cell.style.backgroundColor = "#bdc3c7"; // Gray (incorrect)
+            // Remove the first occurrence of this letter from remainingLetters
+            const letterIndex = remainingLetters.indexOf(guessArray[i]);
+            remainingLetters[letterIndex] = null; // Mark as used
+        } 
+        else if (cell.style.backgroundColor !== "rgb(46, 204, 113)") { 
+            // If it's not green already, make it gray
+            cell.style.backgroundColor = "#bdc3c7"; // Gray (incorrect letter)
+            cell.style.color = "white";
         }
     }
 }
+
