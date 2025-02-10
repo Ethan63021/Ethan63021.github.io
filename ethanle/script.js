@@ -3,6 +3,38 @@ let attempts = 0;
 const maxAttempts = 6;
 let currentGuess = "";
 
+const mobileInput = document.getElementById("mobileInput");
+
+// Auto-focus the hidden input when game starts or user taps the screen
+document.addEventListener("click", () => mobileInput.focus());
+mobileInput.addEventListener("focusout", () => setTimeout(() => mobileInput.focus(), 100)); // Re-focus if lost
+
+// Listen for input from the mobile keyboard
+mobileInput.addEventListener("input", (e) => {
+    let value = e.target.value.toUpperCase();
+    if (/^[A-Z]{0,5}$/.test(value)) {
+        currentGuess = value;
+        updateKeystrokes();
+    }
+    
+    // Clear input field to allow continuous typing
+    if (value.length >= 5) {
+        mobileInput.value = "";  
+    }
+});
+
+// Listen for Enter key via input field
+mobileInput.addEventListener("keypress", (e) => {
+    if (e.key === "Enter") {
+        submitGuess();
+        mobileInput.value = ""; // Clear field after submission
+    }
+});
+
+// Ensure input field is focused on load
+window.onload = () => mobileInput.focus();
+
+
 // Elements
 const grid = document.getElementById("grid");
 const keystrokeContainer = document.getElementById("keystrokeContainer");
