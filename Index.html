@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ethan Dev - Projects</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            max-width: 800px;
+            margin-top: 20px;
+        }
+        .project-card {
+            background: #333;
+            padding: 15px;
+            border-radius: 8px;
+            width: 250px;
+            text-align: left;
+        }
+        .project-card a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ethan Dev</h1>
+    <p>Building modern web experiences with clean and efficient code.</p>
+    <div class="project-container" id="projects"></div>
+    <script>
+        const projects = [
+            { name: "Project One", description: "A cool web app.", link: "#" },
+            { name: "Project Two", description: "Another great project.", link: "#" },
+            { name: "Project Three", description: "An amazing tool.", link: "#" }
+        ];
+
+        const container = document.getElementById("projects");
+        projects.forEach(proj => {
+            const card = document.createElement("div");
+            card.className = "project-card";
+            card.innerHTML = `<h3>${proj.name}</h3><p>${proj.description}</p><a href="${proj.link}" target="_blank">View Project</a>`;
+            container.appendChild(card);
+        });
+    </script>
+</body>
+</html>
