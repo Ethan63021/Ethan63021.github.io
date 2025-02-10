@@ -82,9 +82,34 @@ function updateKeystrokes() {
 // Display the guess with colors
 function displayGuess(guess) {
     const startIdx = (attempts - 1) * 5;
+    const correctWordArray = correctWord.split(""); // Convert "ETHAN" into an array
+    const guessArray = guess.split(""); // Convert guess into an array
+
+    // Create a copy of correctWordArray to track used letters
+    let remainingLetters = [...correctWordArray];
+
+    // First pass: Check for correct letters in the correct position (GREEN)
     for (let i = 0; i < 5; i++) {
         const cell = grid.children[startIdx + i];
-        cell.textContent = guess[i];
-        cell.style.backgroundColor = "#bdc3c7"; // Light gray for incorrect letters
+        if (guessArray[i] === correctWordArray[i]) {
+            cell.style.backgroundColor = "#2ecc71"; // Green
+            remainingLetters[i] = null; // Mark this letter as used
+        }
+    }
+
+    // Second pass: Check for correct letters in the wrong position (YELLOW)
+    for (let i = 0; i < 5; i++) {
+        const cell = grid.children[startIdx + i];
+
+        // If it's already green, skip it
+        if (cell.style.backgroundColor === "rgb(46, 204, 113)") continue;
+
+        const letterIndex = remainingLetters.indexOf(guessArray[i]);
+        if (letterIndex !== -1) {
+            cell.style.backgroundColor = "#f1c40f"; // Yellow
+            remainingLetters[letterIndex] = null; // Mark this letter as used
+        } else {
+            cell.style.backgroundColor = "#bdc3c7"; // Gray (incorrect)
+        }
     }
 }
